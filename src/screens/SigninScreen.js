@@ -26,8 +26,8 @@ const SigninScreen = ({signin, loading, error}) => {
       </View>
       <Button
         size={Button.Size.Wide}
-        onPress={() => startSignin()}
-        disabled={!!loading}
+        onPress={startSignin}
+        disabled={loading}
         color={Button.Color.Light}
         style={styles.buttonContainer}
       />

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "700636801833",
+    "project_id": "digiread-ce0f8",
+    "storage_bucket": "digiread-ce0f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700636801833:android:b1eb0d1b8ca9265e22a538",
+        "android_client_info": {
+          "package_name": "com.digiread"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700636801833-85i2rl0b7r3tq78acqme6puqt58hjqr4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMezhmpdqdpxFRAS7ZchB2_pIovkHYMDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700636801833-85i2rl0b7r3tq78acqme6puqt58hjqr4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
