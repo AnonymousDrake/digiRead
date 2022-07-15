@@ -1,12 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 
 const LoadingScreen = () => (
   <View style={styles.container}>
-    <Image
-      source={require('../assets/logo.png')}
-      style={styles.logo}
-    />
+    <Image source={require('../assets/logo.png')} style={styles.logo} />
 
     <View style={styles.body}>
       <Text style={styles.title}>DigiRead</Text>
@@ -29,7 +26,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     height: 260,
-    width: 240
+    width: 240,
   },
   title: {
     fontSize: 30,

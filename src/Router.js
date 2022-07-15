@@ -1,10 +1,13 @@
 import 'react-native-gesture-handler';
-import React, { useEffect, useState } from 'react';
-import { StatusBar } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-import { connect } from 'react-redux';
-import { startGetUser } from './actions';
+import React, {useEffect, useState} from 'react';
+import {StatusBar} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
+import {connect} from 'react-redux';
+import {startGetUser} from './actions';
 import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
 import SigninScreen from './screens/SigninScreen';
@@ -20,32 +23,36 @@ const HomeNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Home_Main"
-    >
-      <Stack.Screen
-        component={HomeScreen}
-        name="Home_Main"
-      />
+      initialRouteName="Home_Main">
+      <Stack.Screen component={HomeScreen} name="Home_Main" />
       <Stack.Screen
         component={SearchScreen}
         name="Search_Focus"
-        options={{ cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS }}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,
+        }}
       />
       <Stack.Screen
         component={SearchResultScreen}
         name="Search_Result"
-        options={{ cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid }}
+        options={{
+          cardStyleInterpolator:
+            CardStyleInterpolators.forScaleFromCenterAndroid,
+        }}
       />
       <Stack.Screen
         component={BookInfoScreen}
         name="Book_Info"
-        options={{ cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid }}
+        options={{
+          cardStyleInterpolator:
+            CardStyleInterpolators.forScaleFromCenterAndroid,
+        }}
       />
     </Stack.Navigator>
-  )
-}
+  );
+};
 
-const Router = ({ user, getUser }) => {
+const Router = ({user, getUser}) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -56,17 +63,23 @@ const Router = ({ user, getUser }) => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor="#202124" />
-      {loading ? <LoadingScreen /> : !user ? <SigninScreen /> : <HomeNavigator />}
+      {loading ? (
+        <LoadingScreen />
+      ) : !user ? (
+        <SigninScreen />
+      ) : (
+        <HomeNavigator />
+      )}
     </NavigationContainer>
-  )
-}
+  );
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.auth.uid,
-})
+});
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   getUser: () => dispatch(startGetUser()),
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Router);

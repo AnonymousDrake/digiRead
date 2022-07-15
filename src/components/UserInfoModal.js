@@ -1,63 +1,87 @@
 import React from 'react';
-import { View, Modal, StyleSheet, Text, Button, TouchableOpacity, Image } from 'react-native';
+import {
+  View,
+  Modal,
+  StyleSheet,
+  Text,
+  Button,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const UserInfoModal = ({ modalVisibility, setVisibility, startLogout, userAvatar, userEmail, userName }) => {
+const UserInfoModal = ({
+  modalVisibility,
+  setVisibility,
+  startLogout,
+  userAvatar,
+  userEmail,
+  userName,
+}) => {
   const onLogoutPress = () => {
     setTimeout(() => startLogout(), 1000);
-  }
+  };
 
   return (
-    <Modal animationType={"fade"} visible={!!modalVisibility} transparent={true}>
+    <Modal
+      animationType={'fade'}
+      visible={!!modalVisibility}
+      transparent={true}>
       <View style={styles.modalContainer}>
         <View style={styles.modalHeader}>
-          <TouchableOpacity style={styles.modalBackIcon} onPress={() => setVisibility(false)}>
+          <TouchableOpacity
+            style={styles.modalBackIcon}
+            onPress={() => setVisibility(false)}>
             <Icon name="window-close" size={22} color="white" />
           </TouchableOpacity>
           <Text style={styles.modalHeaderText}>My Profile</Text>
         </View>
         <View style={styles.modalInfoContainer}>
-          <Image source={{ uri: userAvatar }} style={styles.modalInfoAvatar} />
+          <Image source={{uri: userAvatar}} style={styles.modalInfoAvatar} />
           <View style={styles.modalInfoSubcontainer}>
             <Text style={styles.modalInfoText}>{userEmail}</Text>
             <Text style={styles.modalInfoText}>{userName}</Text>
           </View>
         </View>
         <View style={styles.modalButtonContainer}>
-          <Button title="Logout" onPress={onLogoutPress} style={styles.modalButton} />
+          <Button
+            title="Logout"
+            onPress={onLogoutPress}
+            style={styles.modalButton}
+          />
         </View>
       </View>
     </Modal>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   modalContainer: {
-    height: "50%",
+    height: '50%',
     marginTop: 100,
     marginHorizontal: 35,
-    backgroundColor: "#444D51",
+    backgroundColor: '#444D51',
     borderRadius: 20,
     paddingVertical: 5,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
   },
   modalHeader: {
-    flexDirection: "row",
+    flexDirection: 'row',
     padding: 10,
     paddingHorizontal: 25,
-    alignItems: "center",
+    alignItems: 'center',
     borderBottomWidth: 0.5,
-    borderBottomColor: "black",
+    borderBottomColor: 'black',
   },
   modalBackIcon: {
-    position: "absolute",
+    position: 'absolute',
     right: 20,
     height: 20,
     width: 20,
@@ -67,23 +91,23 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   modalHeaderText: {
-    color: "white",
+    color: 'white',
     fontSize: 18,
-    alignSelf: "center"
+    alignSelf: 'center',
   },
   modalInfoContainer: {
     flex: 1,
     marginVertical: 18,
-    alignItems: "center",
+    alignItems: 'center',
   },
   modalInfoSubcontainer: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   modalInfoText: {
     fontSize: 18,
-    color: "white",
+    color: 'white',
     marginVertical: 4,
   },
   modalInfoAvatar: {
@@ -94,8 +118,8 @@ const styles = StyleSheet.create({
   modalButtonContainer: {
     paddingBottom: 40,
     paddingHorizontal: 70,
-    justifyContent: "center",
+    justifyContent: 'center',
   },
-})
+});
 
 export default UserInfoModal;

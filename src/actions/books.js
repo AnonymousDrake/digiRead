@@ -1,47 +1,62 @@
-import { bookshelfGetConfiguration, bookshelfEditConfiguration } from "../api/booksApi";
+import {
+  bookshelfGetConfiguration,
+  bookshelfEditConfiguration,
+} from '../api/booksApi';
 
 const getMyBooks = (id, response) => ({
-  type: "GET_BOOKSHELF",
-  payload: { id, response }
+  type: 'GET_BOOKSHELF',
+  payload: {id, response},
 });
 
-const getHomeScreen = (payload) => ({
-  type: "HOME_SCREEN",
+const getHomeScreen = payload => ({
+  type: 'HOME_SCREEN',
   payload,
-})
+});
 
 export const startGetHomeScreen = () => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const instance = await bookshelfGetConfiguration(0);
-      const response0 = await instance.get("/3/volumes");
-      const response1 = await instance.get("/0/volumes");
-      const response2 = await instance.get("/7/volumes");
-      const response3 = await instance.get("/1/volumes");
-      const response4 = await instance.get("/8/volumes");
+      const response0 = await instance.get('/3/volumes');
+      const response1 = await instance.get('/0/volumes');
+      const response2 = await instance.get('/7/volumes');
+      const response3 = await instance.get('/1/volumes');
+      const response4 = await instance.get('/8/volumes');
 
-      const finalResponse = { continueReading: response0.data, favorites: response1.data, myBooks: response2.data, purchased: response3.data, recommended: response4.data };
+      const finalResponse = {
+        continueReading: response0.data,
+        favorites: response1.data,
+        myBooks: response2.data,
+        purchased: response3.data,
+        recommended: response4.data,
+      };
 
-      if (!!response0 && !!response1 && !!response2 && !!response3 && !!response4)
+      if (
+        !!response0 &&
+        !!response1 &&
+        !!response2 &&
+        !!response3 &&
+        !!response4
+      )
         dispatch(getHomeScreen(finalResponse));
     } catch (err) {
       console.log(err);
     }
-  }
-}
+  };
+};
 
 export const startGetMyBooks = (code, startIndex) => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const instance = await bookshelfGetConfiguration(startIndex);
-      const response = await instance.get("/" + code.toString() + "/volumes");
+      const response = await instance.get('/' + code.toString() + '/volumes');
       if (!!response);
       // dispatch(getMyBooks(code, response.data));
     } catch (err) {
       console.log(err);
     }
-  }
-}
+  };
+};
 
 // export const startAddVolume = async (code, bookId) => {
 //   const instance = bookshelfEditConfiguration(bookId);

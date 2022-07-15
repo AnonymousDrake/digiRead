@@ -1,34 +1,49 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
-import { connect } from 'react-redux';
+import React, {useState} from 'react';
+import {View, StyleSheet, Text, Button, TouchableOpacity} from 'react-native';
+import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { getSearchResults, resetSearch } from '../actions';
+import {getSearchResults, resetSearch} from '../actions';
 import SearchHeaderFocused from '../components/SearchHeaderFocused';
 import FilterPicker from '../components/FilterPicker';
 
-const SearchScreen = ({ initiateSearch, searchString, navigation, filters, route, resetSearchReducer, availableFilters }) => {
+const SearchScreen = ({
+  initiateSearch,
+  searchString,
+  navigation,
+  filters,
+  route,
+  resetSearchReducer,
+  availableFilters,
+}) => {
   const [searchDetails, setSearchDetails] = useState({
     searchString,
     filters: {
       searchBy: filters.searchBy,
       searchFor: filters.searchFor,
       setPrice: filters.setPrice,
-      orderBy: filters.orderBy
+      orderBy: filters.orderBy,
     },
     backPressed: false,
   });
-  if (searchDetails.backPressed && route.params.previousScreen !== "Home_Main") {
-    setTimeout(() => setSearchDetails({
-      searchString,
-      filters: {
-        searchBy: filters.searchBy,
-        searchFor: filters.searchFor,
-        setPrice: filters.setPrice,
-        orderBy: filters.orderBy
-      },
-      backPressed: false
-    }), 200);
-  };
+  if (
+    searchDetails.backPressed &&
+    route.params.previousScreen !== 'Home_Main'
+  ) {
+    setTimeout(
+      () =>
+        setSearchDetails({
+          searchString,
+          filters: {
+            searchBy: filters.searchBy,
+            searchFor: filters.searchFor,
+            setPrice: filters.setPrice,
+            orderBy: filters.orderBy,
+          },
+          backPressed: false,
+        }),
+      200,
+    );
+  }
 
   const onDeleteFilters = () => {
     setSearchDetails({
@@ -37,34 +52,46 @@ const SearchScreen = ({ initiateSearch, searchString, navigation, filters, route
         searchBy: availableFilters.searchBy[0].value,
         searchFor: availableFilters.searchFor[0].value,
         setPrice: availableFilters.setPrice[0].value,
-        orderBy: availableFilters.orderBy[0].value
-      }
-    })
-  }
-  const onSearchByValueChange = (searchBy) => {
-    setSearchDetails({ ...searchDetails, filters: { ...searchDetails.filters, searchBy } });
-  }
-  const onSearchForValueChange = (searchFor) => {
-    setSearchDetails({ ...searchDetails, filters: { ...searchDetails.filters, searchFor } });
-  }
-  const onSetPriceValueChange = (setPrice) => {
-    setSearchDetails({ ...searchDetails, filters: { ...searchDetails.filters, setPrice } });
-  }
-  const onOrderByValueChange = (orderBy) => {
-    setSearchDetails({ ...searchDetails, filters: { ...searchDetails.filters, orderBy } });
-  }
-  const onSearchStringChange = (searchString) => {
-    setSearchDetails({ ...searchDetails, searchString })
-  }
+        orderBy: availableFilters.orderBy[0].value,
+      },
+    });
+  };
+  const onSearchByValueChange = searchBy => {
+    setSearchDetails({
+      ...searchDetails,
+      filters: {...searchDetails.filters, searchBy},
+    });
+  };
+  const onSearchForValueChange = searchFor => {
+    setSearchDetails({
+      ...searchDetails,
+      filters: {...searchDetails.filters, searchFor},
+    });
+  };
+  const onSetPriceValueChange = setPrice => {
+    setSearchDetails({
+      ...searchDetails,
+      filters: {...searchDetails.filters, setPrice},
+    });
+  };
+  const onOrderByValueChange = orderBy => {
+    setSearchDetails({
+      ...searchDetails,
+      filters: {...searchDetails.filters, orderBy},
+    });
+  };
+  const onSearchStringChange = searchString => {
+    setSearchDetails({...searchDetails, searchString});
+  };
   const onSearchPress = () => {
     initiateSearch(searchDetails.searchString, searchDetails.filters, 0);
-    navigation.navigate("Search_Result", { loading: true });
-  }
+    navigation.navigate('Search_Result', {loading: true});
+  };
   const onBackButtonPressed = () => {
     navigation.navigate(route.params.previousScreen, {
       loading: false,
     });
-    setSearchDetails({ ...searchDetails, backPressed: true });
+    setSearchDetails({...searchDetails, backPressed: true});
   };
 
   return (
@@ -82,16 +109,11 @@ const SearchScreen = ({ initiateSearch, searchString, navigation, filters, route
         <View style={styles.infoContainer}>
           <View style={styles.infoHeader}>
             <Icon name="filter" style={styles.filterIcon} />
-            <Text style={styles.infoHeading}>
-              Filters
-            </Text>
+            <Text style={styles.infoHeading}>Filters</Text>
             <TouchableOpacity
               onPress={onDeleteFilters}
-              style={styles.removeFilter}
-            >
-              <Text style={styles.removeFilterText}>
-                Reset
-              </Text>
+              style={styles.removeFilter}>
+              <Text style={styles.removeFilterText}>Reset</Text>
             </TouchableOpacity>
           </View>
 
@@ -120,70 +142,69 @@ const SearchScreen = ({ initiateSearch, searchString, navigation, filters, route
               onValueChange={onOrderByValueChange}
               selected={searchDetails.filters.orderBy}
             />
-          </ View>
+          </View>
 
           <View style={styles.searchButton}>
             <Button
-              title={"Search"}
+              title={'Search'}
               onPress={onSearchPress}
               disabled={searchDetails.searchString.length === 0}
             />
           </View>
-
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#202124"
+    backgroundColor: '#202124',
   },
   bodyContainer: {
     flex: 1,
-    backgroundColor: "#202124",
+    backgroundColor: '#202124',
     padding: 4,
     paddingBottom: 0,
   },
   infoContainer: {
-    backgroundColor: "#303134",
+    backgroundColor: '#303134',
     flex: 1,
     elevation: 5,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
   },
   infoHeader: {
-    flexDirection: "row",
+    flexDirection: 'row',
     height: 50,
-    borderBottomColor: "#000",
+    borderBottomColor: '#000',
     borderBottomWidth: 0.25,
     paddingLeft: 10,
     paddingRight: 28,
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   infoHeading: {
-    color: "white",
+    color: 'white',
     fontSize: 16,
   },
   removeFilter: {
-    position: "absolute",
+    position: 'absolute',
     right: 20,
   },
   removeFilterText: {
-    color: "#007AFF"
+    color: '#007AFF',
   },
   filterIcon: {
     paddingRight: 6,
     marginTop: 2,
-    color: "white"
+    color: 'white',
   },
   infoBody: {
     height: 300,
@@ -193,17 +214,18 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 60,
     paddingHorizontal: 80,
-  }
-})
+  },
+});
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   searchString: state.search.searchString,
   filters: state.search.filters,
   availableFilters: state.search.availableFilters,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  initiateSearch: (stringToSearch, filters, startIndex) => dispatch(getSearchResults(stringToSearch, filters, startIndex)),
+const mapDispatchToProps = dispatch => ({
+  initiateSearch: (stringToSearch, filters, startIndex) =>
+    dispatch(getSearchResults(stringToSearch, filters, startIndex)),
   resetSearchReducer: () => dispatch(resetSearch()),
 });
 
