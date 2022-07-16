@@ -3,9 +3,9 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {
-  createStackNavigator,
+  createNativeStackNavigator,
   CardStyleInterpolators,
-} from '@react-navigation/stack';
+} from '@react-navigation/native-stack';
 import {connect} from 'react-redux';
 import {startGetUser} from './actions';
 import HomeScreen from './screens/HomeScreen';
@@ -15,7 +15,7 @@ import LoadingScreen from './screens/LoadingScreen';
 import SearchResultScreen from './screens/SearchResultScreen';
 import BookInfoScreen from './screens/BookInfoScreen';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const HomeNavigator = () => {
   return (
