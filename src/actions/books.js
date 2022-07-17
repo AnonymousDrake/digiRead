@@ -17,11 +17,11 @@ export const startGetHomeScreen = () => {
   return async dispatch => {
     try {
       const instance = await bookshelfGetConfiguration(0);
-      const response0 = await instance.get('/3/volumes');
-      const response1 = await instance.get('/0/volumes');
-      const response2 = await instance.get('/7/volumes');
-      const response3 = await instance.get('/1/volumes');
-      const response4 = await instance.get('/8/volumes');
+      const response0 = await instance.get('/volumes/3');
+      const response1 = await instance.get('/volumes/0');
+      const response2 = await instance.get('/volumes/7');
+      const response3 = await instance.get('/volumes/1');
+      const response4 = await instance.get('/volumes/8');
 
       const finalResponse = {
         continueReading: response0.data,

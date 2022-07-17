@@ -3,9 +3,9 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {
-  createStackNavigator,
+  createNativeStackNavigator,
   CardStyleInterpolators,
-} from '@react-navigation/stack';
+} from '@react-navigation/native-stack';
 import {connect} from 'react-redux';
 import {startGetUser} from './actions';
 import HomeScreen from './screens/HomeScreen';
@@ -15,7 +15,7 @@ import LoadingScreen from './screens/LoadingScreen';
 import SearchResultScreen from './screens/SearchResultScreen';
 import BookInfoScreen from './screens/BookInfoScreen';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const HomeNavigator = () => {
   return (
@@ -23,31 +23,11 @@ const HomeNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Home_Main">
+      initialRouteName="Search_Focus">
       <Stack.Screen component={HomeScreen} name="Home_Main" />
-      <Stack.Screen
-        component={SearchScreen}
-        name="Search_Focus"
-        options={{
-          cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,
-        }}
-      />
-      <Stack.Screen
-        component={SearchResultScreen}
-        name="Search_Result"
-        options={{
-          cardStyleInterpolator:
-            CardStyleInterpolators.forScaleFromCenterAndroid,
-        }}
-      />
-      <Stack.Screen
-        component={BookInfoScreen}
-        name="Book_Info"
-        options={{
-          cardStyleInterpolator:
-            CardStyleInterpolators.forScaleFromCenterAndroid,
-        }}
-      />
+      <Stack.Screen component={SearchScreen} name="Search_Focus" />
+      <Stack.Screen component={SearchResultScreen} name="Search_Result" />
+      <Stack.Screen component={BookInfoScreen} name="Book_Info" />
     </Stack.Navigator>
   );
 };
@@ -65,7 +45,7 @@ const Router = ({user, getUser}) => {
       <StatusBar backgroundColor="#202124" />
       {loading ? (
         <LoadingScreen />
-      ) : !user ? (
+      ) : user ? (
         <SigninScreen />
       ) : (
         <HomeNavigator />
