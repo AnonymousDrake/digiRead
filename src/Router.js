@@ -2,10 +2,7 @@ import 'react-native-gesture-handler';
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {
-  createNativeStackNavigator,
-  CardStyleInterpolators,
-} from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {connect} from 'react-redux';
 import {startGetUser} from './actions';
 import HomeScreen from './screens/HomeScreen';
@@ -23,7 +20,7 @@ const HomeNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="Search_Focus">
+      initialRouteName="Home_Main">
       <Stack.Screen component={HomeScreen} name="Home_Main" />
       <Stack.Screen component={SearchScreen} name="Search_Focus" />
       <Stack.Screen component={SearchResultScreen} name="Search_Result" />
@@ -45,7 +42,7 @@ const Router = ({user, getUser}) => {
       <StatusBar backgroundColor="#202124" />
       {loading ? (
         <LoadingScreen />
-      ) : user ? (
+      ) : !user ? (
         <SigninScreen />
       ) : (
         <HomeNavigator />
