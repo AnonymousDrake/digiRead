@@ -101,7 +101,7 @@ const SearchScreen = ({
         onPressSubmit={onSearchPress}
         searchString={searchDetails.searchString}
         onChangeText={onSearchStringChange}
-        previousScreen={route.params.previousScreen}
+        previousScreen={route.params?.previousScreen}
         resetSearchReducer={resetSearchReducer}
       />
 
