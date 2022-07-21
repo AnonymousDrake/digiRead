@@ -55,15 +55,15 @@ Then run the app in Android using `yarn android`
 ## Screenshots
 
 <div justify-content="space-between" align="center">
-  <img alt="search" src="https://raw.githubusercontent.com/AnonymousDrake/digiRead/update-readme/.github/images/search.png" width="400" />
+  <img alt="search" src="https://raw.githubusercontent.com/AnonymousDrake/digiRead/main/.github/images/search.png" width="400" />
   </br>
   <p>🌟Refine search results using search-filters🌟</p>
   </br>
-  <img alt="search-result" src="https://raw.githubusercontent.com/AnonymousDrake/digiRead/update-readme/.github/images/search-result.png" width="400" />
+  <img alt="search-result" src="https://raw.githubusercontent.com/AnonymousDrake/digiRead/main/.github/images/search-result.png" width="400" />
   </br>
   <p>🌟Search results rendered using FlatList for better performance🌟</p>
   </br>
-  <img alt="book-info" src="https://raw.githubusercontent.com/AnonymousDrake/digiRead/update-readme/.github/images/book-info.png" width="400" />
+  <img alt="book-info" src="https://raw.githubusercontent.com/AnonymousDrake/digiRead/main/.github/images/book-info.png" width="400" />
   </br>
   <p>🌟Liked the book? View/Buy it from Google Play Store🌟</p>
   </br>
