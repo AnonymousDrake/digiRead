@@ -3,7 +3,7 @@
 <br/>
 
 <p align="center">
-    <img alt="app-logo" src="https://raw.githubusercontent.com/AnonymousDrake/digiRead/update-readme/.github/images/app-logo.png" width="400" />
+    <img alt="app-logo" src="https://raw.githubusercontent.com/AnonymousDrake/digiRead/main/.github/images/app-logo.png" width="400" />
 </p>
 <h1 align="center">DigiRead - Reading Made Easy!</h1>
 <div align="center">
